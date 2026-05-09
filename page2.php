@@ -1,36 +1,39 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$con = mysqli_connect("localhost","root","");
+/* =======================
+   DATABASE CONNECTION
+======================= */
 
-if(!$con)
-{
+$con = mysqli_connect("localhost", "root", "", "pms");
+
+if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 }
 
-mysqli_query($con,"CREATE DATABASE IF NOT EXISTS pms");
-
-mysqli_select_db($con,"pms");
-
+/* =======================
+   CREATE TABLE
+======================= */
 
 $sql = "CREATE TABLE IF NOT EXISTS orders (
-
     id INT AUTO_INCREMENT PRIMARY KEY,
-
-    chocolate_mousse INT,
-    biscuit_roll INT,
-    macarons INT,
-    truffies INT,
-    nutella INT,
-    churros INT,
-
-    total_bill DECIMAL(10,2)
+    chocolate_mousse INT DEFAULT 0,
+    biscuit_roll INT DEFAULT 0,
+    macarons INT DEFAULT 0,
+    truffies INT DEFAULT 0,
+    nutella INT DEFAULT 0,
+    churros INT DEFAULT 0,
+    total_bill DECIMAL(10,2) DEFAULT 0
 )";
 
-mysqli_query($con,$sql);
+mysqli_query($con, $sql);
 
+/* =======================
+   PRICES
+======================= */
 
 $prices = [
-
     "chocolate_mousse" => 2000,
     "biscuit_roll" => 1500,
     "macarons" => 1000,
@@ -39,49 +42,34 @@ $prices = [
     "churros" => 5000
 ];
 
+/* =======================
+   INPUT VALUES
+======================= */
 
-$chocolate_mousse =
-isset($_POST['chocolate_mousse']) ?
-$_POST['chocolate_mousse'] : 0;
+$chocolate_mousse = $_POST['chocolate_mousse'] ?? 0;
+$biscuit_roll     = $_POST['biscuit_roll'] ?? 0;
+$macarons         = $_POST['macarons'] ?? 0;
+$truffies         = $_POST['truffies'] ?? 0;
+$nutella          = $_POST['nutella'] ?? 0;
+$churros          = $_POST['churros'] ?? 0;
 
-$biscuit_roll =
-isset($_POST['biscuit_roll']) ?
-$_POST['biscuit_roll'] : 0;
+/* =======================
+   TOTAL CALCULATION
+======================= */
 
-$macarons =
-isset($_POST['macarons']) ?
-$_POST['macarons'] : 0;
+$total_bill =
+    $chocolate_mousse * $prices['chocolate_mousse'] +
+    $biscuit_roll * $prices['biscuit_roll'] +
+    $macarons * $prices['macarons'] +
+    $truffies * $prices['truffies'] +
+    $nutella * $prices['nutella'] +
+    $churros * $prices['churros'];
 
-$truffies =
-isset($_POST['truffies']) ?
-$_POST['truffies'] : 0;
+/* =======================
+   INSERT DATA
+======================= */
 
-$nutella =
-isset($_POST['nutella']) ?
-$_POST['nutella'] : 0;
-
-$churros =
-isset($_POST['churros']) ?
-$_POST['churros'] : 0;
-
-
-$total_bill = 0;
-
-$total_bill += $chocolate_mousse * $prices['chocolate_mousse'];
-
-$total_bill += $biscuit_roll * $prices['biscuit_roll'];
-
-$total_bill += $macarons * $prices['macarons'];
-
-$total_bill += $truffies * $prices['truffies'];
-
-$total_bill += $nutella * $prices['nutella'];
-
-$total_bill += $churros * $prices['churros'];
-
-
-$insert = "INSERT INTO orders
-(
+$insert = "INSERT INTO orders (
     chocolate_mousse,
     biscuit_roll,
     macarons,
@@ -89,10 +77,7 @@ $insert = "INSERT INTO orders
     nutella,
     churros,
     total_bill
-)
-
-VALUES
-(
+) VALUES (
     '$chocolate_mousse',
     '$biscuit_roll',
     '$macarons',
@@ -102,40 +87,36 @@ VALUES
     '$total_bill'
 )";
 
-mysqli_query($con,$insert);
+mysqli_query($con, $insert);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Result</title>
+<meta charset="UTF-8">
+<title>Order Result</title>
 
-    <style>
+<style>
+body{
+    font-family: Arial;
+    background: #f2f2f2;
+    padding: 30px;
+}
 
-        body{
-            font-family:Arial;
-            background:#f2f2f2;
-            padding:30px;
-        }
+.box{
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 
-        .box{
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            width:500px;
-            margin:auto;
-            box-shadow:0 0 10px rgba(0,0,0,0.2);
-        }
-
-        h1{
-            text-align:center;
-        }
-
-    </style>
-
+h1{
+    text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -145,43 +126,17 @@ mysqli_query($con,$insert);
 <h1>Your Order</h1>
 
 <?php
-
-if($chocolate_mousse > 0)
-{
-    echo "Chocolate Mousse: $chocolate_mousse <br>";
-}
-
-if($biscuit_roll > 0)
-{
-    echo "Biscuit Roll: $biscuit_roll <br>";
-}
-
-if($macarons > 0)
-{
-    echo "Macarons: $macarons <br>";
-}
-
-if($truffies > 0)
-{
-    echo "Truffies: $truffies <br>";
-}
-
-if($nutella > 0)
-{
-    echo "Nutella Puff Pastry: $nutella <br>";
-}
-
-if($churros > 0)
-{
-    echo "Churros: $churros <br>";
-}
+if($chocolate_mousse > 0) echo "Chocolate Mousse: $chocolate_mousse <br>";
+if($biscuit_roll > 0) echo "Biscuit Roll: $biscuit_roll <br>";
+if($macarons > 0) echo "Macarons: $macarons <br>";
+if($truffies > 0) echo "Truffies: $truffies <br>";
+if($nutella > 0) echo "Nutella: $nutella <br>";
+if($churros > 0) echo "Churros: $churros <br>";
 
 echo "<hr>";
-
 echo "<h2>Total Bill = $total_bill IQD</h2>";
 
 mysqli_close($con);
-
 ?>
 
 </div>

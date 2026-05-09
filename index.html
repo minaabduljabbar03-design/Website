@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +11,16 @@
 
         body{
             margin:0;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            font-family: Arial, sans-serif;
             padding:20px;
-            font-family:Arial, sans-serif;
-            background:linear-gradient(135deg,#e0eafc,#cfdef3);
             color:#2c3e50;
         }
 
         h1{
             text-align:center;
             font-size:60px;
-            margin-bottom:10px;
+            margin:0;
         }
 
         h2{
@@ -26,8 +28,8 @@
         }
 
         table{
+            border-spacing:20px;
             margin:auto;
-            border-spacing:25px;
         }
 
         td{
@@ -35,7 +37,6 @@
             padding:20px;
             border-radius:15px;
             text-align:center;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
         }
 
         img{
@@ -54,11 +55,11 @@
         }
 
         button{
-            padding:8px 15px;
-            font-size:18px;
+            padding:5px 15px;
+            font-size:20px;
             cursor:pointer;
-            border:none;
-            border-radius:6px;
+            border-radius:5px;
+            border:1px solid #333;
         }
 
         button:hover{
@@ -66,199 +67,243 @@
         }
 
         .counter-value{
-            font-size:22px;
+            font-size:24px;
             font-weight:bold;
         }
 
-        .confirm{
-            display:flex;
-            justify-content:center;
-            margin-top:30px;
-        }
-
-        .confirm button{
-            padding:12px 30px;
-            font-size:20px;
-            background:#3498db;
-            color:white;
+        .button-container{
+            text-align:center;
+            margin-top:20px;
         }
 
     </style>
+
 </head>
 
 <body>
 
-    <h2>Welcome To</h2>
-    <h1>MR Sweets</h1>
+<h2>Welcome to</h2>
+<h1>MR Sweets</h1>
 
-    <form action="page2.php" method="POST">
+<form action="page2.php" method="POST">
 
-        <table>
+<table>
 
-            <tr>
+<tr>
 
-                <td>
-                    <img src="sweets imags/p1.jpg" alt="">
-                    <h3>Chocolate Mousse</h3>
-                    <h3>2000 IQD</h3>
+<td>
 
-                    <div class="controls">
-                        <button type="button" onclick="updateQty(this,-1)">-</button>
+<img src="sweets imags/p1.jpg" alt="Chocolate Mousse">
 
-                        <span class="counter-value">0</span>
+<h3>Chocolate Mousse</h3>
 
-                        <input type="hidden" name="chocolate_mousse" value="0">
+<h3>2000 IQD</h3>
 
-                        <button type="button" onclick="updateQty(this,1)">+</button>
-                    </div>
-                </td>
+<div class="controls">
 
-                <td>
-                    <img src="sweets imags/p2.jpg" alt="">
-                    <h3>Chocolate Biscuit Roll</h3>
-                    <h3>1500 IQD</h3>
+<button type="button" onclick="updateQty(this,-1)">-</button>
 
-                    <div class="controls">
-                        <button type="button" onclick="updateQty(this,-1)">-</button>
+<span class="counter-value">0</span>
 
-                        <span class="counter-value">0</span>
+<input type="hidden" name="chocolate_mousse" value="0">
 
-                        <input type="hidden" name="biscuit_roll" value="0">
+<button type="button" onclick="updateQty(this,1)">+</button>
 
-                        <button type="button" onclick="updateQty(this,1)">+</button>
-                    </div>
-                </td>
+</div>
 
-                <td>
-                    <img src="sweets imags/p3.jpg" alt="">
-                    <h3>French Macarons</h3>
-                    <h3>1000 IQD</h3>
-
-                    <div class="controls">
-                        <button type="button" onclick="updateQty(this,-1)">-</button>
-
-                        <span class="counter-value">0</span>
-
-                        <input type="hidden" name="macarons" value="0">
-
-                        <button type="button" onclick="updateQty(this,1)">+</button>
-                    </div>
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td>
-                    <img src="sweets imags/p4.jpg" alt="">
-                    <h3>Chocolate Truffies</h3>
-                    <h3>4500 IQD</h3>
-
-                    <div class="controls">
-                        <button type="button" onclick="updateQty(this,-1)">-</button>
-
-                        <span class="counter-value">0</span>
-
-                        <input type="hidden" name="truffies" value="0">
-
-                        <button type="button" onclick="updateQty(this,1)">+</button>
-                    </div>
-                </td>
-
-                <td>
-                    <img src="sweets imags/p5.jpg" alt="">
-                    <h3>Nutella Puff Pastry</h3>
-                    <h3>5000 IQD</h3>
-
-                    <div class="controls">
-                        <button type="button" onclick="updateQty(this,-1)">-</button>
-
-                        <span class="counter-value">0</span>
-
-                        <input type="hidden" name="nutella" value="0">
-
-                        <button type="button" onclick="updateQty(this,1)">+</button>
-                    </div>
-                </td>
-
-                <td>
-                    <img src="sweets imags/p6.jpg" alt="">
-                    <h3>Churros</h3>
-                    <h3>5000 IQD</h3>
-
-                    <div class="controls">
-                        <button type="button" onclick="updateQty(this,-1)">-</button>
-
-                        <span class="counter-value">0</span>
-
-                        <input type="hidden" name="churros" value="0">
-
-                        <button type="button" onclick="updateQty(this,1)">+</button>
-                    </div>
-                </td>
-
-            </tr>
-
-        </table>
-
-        <div class="confirm">
-            <button type="button" onclick="checkBeforeSend(this)">
-                Confirm Order
-            </button>
-        </div>
-
-    </form>
-
-    <script>
-
-        function updateQty(button, step)
-        {
-            const controlsDiv = button.parentElement;
-
-            const counterSpan =
-            controlsDiv.querySelector('.counter-value');
-
-            const hiddenInput =
-            controlsDiv.querySelector('input[type="hidden"]');
-
-            let currentVal = parseInt(counterSpan.innerText);
-
-            currentVal += step;
-
-            if(currentVal < 0)
-            {
-                currentVal = 0;
-            }
-
-            counterSpan.innerText = currentVal;
-
-            hiddenInput.value = currentVal;
-        }
+</td>
 
 
-        function checkBeforeSend(button)
-        {
-            const quantities =
-            document.querySelectorAll('input[type="hidden"]');
 
-            let total = 0;
+<td>
 
-            quantities.forEach(function(input)
-            {
-                total += parseInt(input.value);
-            });
+<img src="sweets imags/p2.jpg" alt="Chocolate Biscuit Roll">
 
-            if(total > 0)
-            {
-                button.form.submit();
-            }
-            else
-            {
-                alert("Please select at least one item.");
-            }
-        }
+<h3>Chocolate Biscuit Roll</h3>
 
-    </script>
+<h3>1500 IQD</h3>
+
+<div class="controls">
+
+<button type="button" onclick="updateQty(this,-1)">-</button>
+
+<span class="counter-value">0</span>
+
+<input type="hidden" name="biscuit_roll" value="0">
+
+<button type="button" onclick="updateQty(this,1)">+</button>
+
+</div>
+
+</td>
+
+
+
+<td>
+
+<img src="sweets imags/p3.jpg" alt="French Macarons">
+
+<h3>French Macarons</h3>
+
+<h3>1000 IQD</h3>
+
+<div class="controls">
+
+<button type="button" onclick="updateQty(this,-1)">-</button>
+
+<span class="counter-value">0</span>
+
+<input type="hidden" name="macarons" value="0">
+
+<button type="button" onclick="updateQty(this,1)">+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+
+<img src="sweets imags/p4.jpg" alt="Chocolate Truffies">
+
+<h3>Chocolate Truffies</h3>
+
+<h3>4500 IQD</h3>
+
+<div class="controls">
+
+<button type="button" onclick="updateQty(this,-1)">-</button>
+
+<span class="counter-value">0</span>
+
+<input type="hidden" name="truffies" value="0">
+
+<button type="button" onclick="updateQty(this,1)">+</button>
+
+</div>
+
+</td>
+
+
+
+<td>
+
+<img src="sweets imags/p5.jpg" alt="Nutella Puff Pastry">
+
+<h3>Nutella Puff Pastry</h3>
+
+<h3>5000 IQD</h3>
+
+<div class="controls">
+
+<button type="button" onclick="updateQty(this,-1)">-</button>
+
+<span class="counter-value">0</span>
+
+<input type="hidden" name="nutella" value="0">
+
+<button type="button" onclick="updateQty(this,1)">+</button>
+
+</div>
+
+</td>
+
+
+
+<td>
+
+<img src="sweets imags/p6.jpg" alt="Churros">
+
+<h3>Churros</h3>
+
+<h3>5000 IQD</h3>
+
+<div class="controls">
+
+<button type="button" onclick="updateQty(this,-1)">-</button>
+
+<span class="counter-value">0</span>
+
+<input type="hidden" name="churros" value="0">
+
+<button type="button" onclick="updateQty(this,1)">+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="button-container">
+
+<button type="button" onclick="checkBeforeSend(this)">
+    Confirm Order
+</button>
+
+</div>
+
+</form>
+
+
+
+<script>
+
+function updateQty(button, step)
+{
+    const controlsDiv = button.parentElement;
+
+    const counterSpan =
+    controlsDiv.querySelector('.counter-value');
+
+    const hiddenInput =
+    controlsDiv.querySelector('input[type="hidden"]');
+
+    let currentVal = parseInt(counterSpan.innerText);
+
+    currentVal += step;
+
+    if(currentVal < 0)
+    {
+        currentVal = 0;
+    }
+
+    counterSpan.innerText = currentVal;
+
+    hiddenInput.value = currentVal;
+}
+
+
+
+function checkBeforeSend(button)
+{
+    const quantities =
+    document.querySelectorAll('input[type="hidden"]');
+
+    let total = 0;
+
+    quantities.forEach(function(input)
+    {
+        total += parseInt(input.value);
+    });
+
+    if(total > 0)
+    {
+        button.form.submit();
+    }
+    else
+    {
+        alert("Please select at least one item before confirming your order.");
+    }
+}
+
+</script>
 
 </body>
 </html>
